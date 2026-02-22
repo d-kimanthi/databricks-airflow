@@ -24,29 +24,6 @@ A data engineering project that orchestrates a medallion data pipeline using Apa
 | **Silver**    | `posts_silver`, `posts_dqx_checks`           | Cleaned and validated data; DQX quality checks applied                                |
 | **Gold**      | `gold_posts_users`, `gold_most_popular_tags` | Aggregated, business-ready datasets                                                   |
 
-## Project Structure
-
-```
-.
-├── cicd/
-│   └── Dockerfile                  # Custom Airflow image with dependencies
-├── charts/
-│   ├── values-override.yaml        # Helm overrides (git-sync, executor, image)
-│   └── values-override-persistence.yaml
-├── dags/
-│   ├── produce_data_assets.py      # Main ingestion DAG
-│   └── test_dag.py                 # Smoke test DAG
-├── notebooks/                      # Databricks notebooks (medallion layers)
-├── k8s/
-│   ├── clusters/                   # kind cluster config
-│   ├── secrets/                    # Secret templates (applied from .env)
-│   └── volumes/                    # PersistentVolume for logs
-├── install_airflow.sh              # Fresh cluster install
-├── install_airflow_with_persistence.sh  # Install with log persistence
-├── upgrade_airflow.sh              # Upgrade existing deployment
-└── requirements.txt                # Python dependencies for the Airflow image
-```
-
 ## Prerequisites
 
 - [Docker](https://docs.docker.com/get-docker/)
@@ -119,3 +96,7 @@ kubectl exec -it -n airflow <scheduler-pod> -c scheduler -- airflow dags list-im
 # Check task logs for a stuck task
 kubectl logs -n airflow <worker-pod>
 ```
+
+# Credits
+
+Adapted from [jayzern's](https://github.com/jayzern/databricks-airflow3.0-template) original project
