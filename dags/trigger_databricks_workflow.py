@@ -8,7 +8,7 @@ with DAG(
     run_databricks_workflow = DatabricksRunNowOperator(
         task_id="run_databricks_workflow",
         databricks_conn_id="databricks_conn",
-        job_id="879157959924010",
+        job_id="301024360932088",
     )
 
     run_databricks_workflow

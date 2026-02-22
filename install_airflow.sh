@@ -20,8 +20,15 @@ kind load docker-image $IMAGE_NAME:$IMAGE_TAG
 # Create a namespace
 kubectl create namespace $NAMESPACE
 
-# Apply kubernetes secrets
-# kubectl apply -f k8s/secrets/git-secrets.yaml
+# Apply kubernetes secrets from environment variables
+# Required: export GIT_USERNAME=<your-github-username> GIT_PASSWORD=<your-github-token>
+kubectl create secret generic git-credentials \
+    --namespace $NAMESPACE \
+    --from-literal=GITSYNC_USERNAME="$GIT_USERNAME" \
+    --from-literal=GITSYNC_PASSWORD="$GIT_PASSWORD" \
+    --from-literal=GIT_SYNC_USERNAME="$GIT_USERNAME" \
+    --from-literal=GIT_SYNC_PASSWORD="$GIT_PASSWORD" \
+    --dry-run=client -o yaml | kubectl apply -f -
 
 # Install Airflow using Helm
 helm install $RELEASE_NAME apache-airflow/airflow \
