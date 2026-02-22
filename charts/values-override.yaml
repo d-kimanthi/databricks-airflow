@@ -1,0 +1,7 @@
+images:
+  airflow:
+    repository: airflow-dags
+    tag: ~
+    # Specifying digest takes precedence over tag.
+    digest: ~
+    pullPolicy: IfNotPresent
