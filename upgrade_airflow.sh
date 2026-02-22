@@ -1,3 +1,6 @@
+# Load credentials from .env
+set -a && source .env && set +a
+
 # Export values for Airflow docker image
 export IMAGE_NAME=airflow-dags
 export IMAGE_TAG=$(date +%Y%m%d%H%M%S)

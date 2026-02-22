@@ -13,8 +13,8 @@ with DAG(
         print("Hello world, from Airflow!")
 
     @task
-    def goodbye_world_v2():
+    def goodbye_world_v3():
         time.sleep(5)
-        print("Goodbye world, from Airflow! Version 2")
+        print("Goodbye world, from Airflow! Version 3")
 
-    hello_world() >> goodbye_world_v2()
+    hello_world() >> goodbye_world_v3()

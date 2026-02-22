@@ -7,6 +7,9 @@
 # helm repo update
 # helm show values apache-airflow/airflow > charts/values-example.yaml
 
+# Load credentials from .env
+set -a && source .env && set +a
+
 # Export values for Airflow docker image
 export IMAGE_NAME=airflow-dags
 export IMAGE_TAG=$(date +%Y%m%d%H%M%S)
